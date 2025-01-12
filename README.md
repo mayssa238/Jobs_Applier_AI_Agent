@@ -208,7 +208,9 @@ Each section has specific fields to fill out:
         Operating Systems: "A-"
         Web Development: "B"
   ```
-
+  ةة
+  ذذة
+ة
 - `experience_details:`
   - This section details your work experience, including job roles, companies, and key responsibilities.
     - **position**: Your job title or role.
