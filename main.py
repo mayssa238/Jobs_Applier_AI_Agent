@@ -561,6 +561,92 @@ def main():
     except Exception as e:
         logger.exception(f"An unexpected error occurred: {e}")
 
+pip install googletrans==4.0.0-rc1
+from googletrans import Translator
 
+# Function to translate text
+def translate_text(text, dest_lang='en'):
+    translator = Translator()
+    translated = translator.translate(text, dest=dest_lang)
+    return translated.text
+
+# Example of using translation
+original_text = "Hello, how are you?"
+translated_text = translate_text(original_text, dest_lang='en')
+print(f"Translated text: {translated_text}")
+
+pip install fpdf
+
+from fpdf import FPDF
+
+# Function to export CV to PDF
+def export_to_pdf(content, file_name='cv.pdf'):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    
+    for line in content:
+        pdf.cell(200, 10, txt=line, ln=True)
+    
+    pdf.output(file_name)
+
+# Example of using export to PDF
+cv_content = [
+    "Name: Ahmed Ali",
+    "Degree: Bachelor in Computer Science",
+    "Experience: Software Developer at XYZ Company"
+]
+export_to_pdf(cv_content)
+pip install tk
+import tkinter as tk
+from tkinter import messagebox
+
+def generate_cv():
+    name = entry_name.get()
+    degree = entry_degree.get()
+    experience = entry_experience.get()
+    
+    if not name or not degree or not experience:
+        messagebox.showerror("Error", "Please fill all fields")
+        return
+    
+    content = [
+        f"Name: {name}",
+        f"Degree: {degree}",
+        f"Experience: {experience}"
+    ]
+    
+    # You can add PDF export or translation functionality here
+    export_to_pdf(content)
+    messagebox.showinfo("Success", "CV created successfully!")
+
+# Create Tkinter window
+root = tk.Tk()
+root.title("Create CV")
+
+# Add labels and entry fields
+label_name = tk.Label(root, text="Name:")
+label_name.pack()
+
+entry_name = tk.Entry(root)
+entry_name.pack()
+
+label_degree = tk.Label(root, text="Degree:")
+label_degree.pack()
+
+entry_degree = tk.Entry(root)
+entry_degree.pack()
+
+label_experience = tk.Label(root, text="Experience:")
+label_experience.pack()
+
+entry_experience = tk.Entry(root)
+entry_experience.pack()
+
+# Button to generate the CV
+generate_button = tk.Button(root, text="Create CV", command=generate_cv)
+generate_button.pack()
+
+root.mainloop()
 if __name__ == "__main__":
     main()
